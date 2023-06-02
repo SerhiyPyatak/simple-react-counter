@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/SerhiyPyatak/simple-react-counter/static/css/main.073c9b0a.css",
+    "main.js": "/SerhiyPyatak/simple-react-counter/static/js/main.5672307e.js",
+    "static/js/787.12306a28.chunk.js": "/SerhiyPyatak/simple-react-counter/static/js/787.12306a28.chunk.js",
+    "index.html": "/SerhiyPyatak/simple-react-counter/index.html",
+    "main.073c9b0a.css.map": "/SerhiyPyatak/simple-react-counter/static/css/main.073c9b0a.css.map",
+    "main.5672307e.js.map": "/SerhiyPyatak/simple-react-counter/static/js/main.5672307e.js.map",
+    "787.12306a28.chunk.js.map": "/SerhiyPyatak/simple-react-counter/static/js/787.12306a28.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.5672307e.js"
+  ]
+}
