@@ -2,7 +2,7 @@
   "name": "simple_react_counter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/SerhiyPyatak/simple-react-counter",
+  "homepage": "https://SerhiyPyatak.github.io/simple-react-counter",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
