@@ -1,9 +1,36 @@
-import React, { useState } from "react";
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { injectGlobal } from '@emotion/css';
+import WebFont from 'webfontloader';
 
-const App = () => {
+import { fontsLoader, themes } from './themes';
+import useThemifiedComponent from "./app/hooks/useThemifiedComponent";
+
+const App = ({data}) => {
   //  Counter is a state initialized to 0
-  const [counter, setCounter] = useState(0)
+  const [counter, setCounter] = useState(0);
+
+  const [cssCounterContainer] = useThemifiedComponent('counter-container', data.theme);
+  const [cssCounterTitle] = useThemifiedComponent('counter-title', data.theme);
+  const [cssCounterValue] = useThemifiedComponent('counter-value', data.theme);
+  const [cssControlBox] = useThemifiedComponent('control-box', data.theme);
+  const [cssBtnIncrease] = useThemifiedComponent('increase-button', data.theme);
+  const [cssBtnDecrease] = useThemifiedComponent('decrease-button', data.theme);
+  const [cssStaticString] = useThemifiedComponent('static-string', data.theme);
+
+  let fl = data.hasOwnProperty('theme') ? fontsLoader(data.theme) : null;
+  if (fl) injectGlobal`${fl}`;
+
+  useEffect(() => {
+    console.log(themes[data.theme]["google-fonts"]);
+    if (themes[data.theme]["google-fonts"].length) {
+      WebFont.load({
+        google: {
+          families: themes[data.theme]["google-fonts"]
+        }
+      });
+    }
+    
+   }, []);
   
   // Function is called everytime increment button is clicked
   const handleClick1 = () => {
@@ -18,47 +45,14 @@ const App = () => {
   }
   
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: '300%',
-      position: 'absolute',
-      width: '100%',
-      height: '100%',
-      top: '-15%',
-    }}>
-      Counter App
-      <div style={{
-        fontSize: '120%',
-        position: 'relative',
-        top: '10vh',
-      }}>
-        {counter}
+    <div className={cssCounterContainer}>
+      <h2 className={cssCounterTitle}>{ data.counter_title ? data.counter_title : 'Counter App' }</h2>
+      <div className={cssCounterValue}> {counter} </div>
+      <div className={cssControlBox}>
+        <button className={cssBtnIncrease} onClick={handleClick1}>Increment</button>
+        <button className={cssBtnDecrease} onClick={handleClick2}>Decrement</button>
       </div>
-      <div className="buttons">
-        <button style={{
-          fontSize: '60%',
-          position: 'relative',
-          top: '20vh',
-          marginRight: '5px',
-          backgroundColor: 'green',
-          borderRadius: '8%',
-          color: 'white',
-        }}
-          onClick={handleClick1}>Increment</button>
-        <button style={{
-          fontSize: '60%',
-          position: 'relative',
-          top: '20vh',
-          marginLeft: '5px',
-          backgroundColor: 'red',
-          borderRadius: '8%',
-          color: 'white',
-        }}
-          onClick={handleClick2}>Decrement</button>
-      </div>
+      <p className={cssStaticString}>This React micro-frontend application is available for themification</p>
     </div>
   )
 }
