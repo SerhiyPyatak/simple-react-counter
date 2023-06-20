@@ -30,6 +30,7 @@ export const themes = {
         "counter-value": {
             "fontSize": '120%',
             "padding": '1% 0',
+            "margin": '3% 0',
         },
 
         "increase-button": {
@@ -65,11 +66,11 @@ export const themes = {
     "dark": {
         "counter-container": {
             "backgroundColor": '#333',
-            "color": '#ffa500',
         },
 
         "counter-title": {
             "fontFamily": 'Chilanka',
+            "color": '#ffa500',
         },
 
         "counter-value": {

@@ -6,6 +6,22 @@ import { fontsLoader, themes } from './themes';
 import useThemifiedComponent from "./app/hooks/useThemifiedComponent";
 
 const App = ({data}) => {
+  let fl = data.hasOwnProperty('theme') ? fontsLoader(data.theme) : null;
+    if (fl) injectGlobal`${fl}`;
+
+    useEffect(() => {
+      if (themes[data.theme]["google-fonts"].length) {
+        WebFont.load({
+          google: {
+            families: themes[data.theme]["google-fonts"]
+          }
+        });
+      }
+      
+    }, []);
+
+  // ToDo ------- Replace it by your code
+
   //  Counter is a state initialized to 0
   const [counter, setCounter] = useState(0);
 
@@ -16,21 +32,6 @@ const App = ({data}) => {
   const [cssBtnIncrease] = useThemifiedComponent('increase-button', data.theme);
   const [cssBtnDecrease] = useThemifiedComponent('decrease-button', data.theme);
   const [cssStaticString] = useThemifiedComponent('static-string', data.theme);
-
-  let fl = data.hasOwnProperty('theme') ? fontsLoader(data.theme) : null;
-  if (fl) injectGlobal`${fl}`;
-
-  useEffect(() => {
-    console.log(themes[data.theme]["google-fonts"]);
-    if (themes[data.theme]["google-fonts"].length) {
-      WebFont.load({
-        google: {
-          families: themes[data.theme]["google-fonts"]
-        }
-      });
-    }
-    
-   }, []);
   
   // Function is called everytime increment button is clicked
   const handleClick1 = () => {
@@ -43,8 +44,10 @@ const App = ({data}) => {
     // Counter state is decremented
     setCounter(counter - 1)
   }
+  // ToDo ---------------------------------
   
   return (
+    // ToDo: ---- Replace it by your code -----------------
     <div className={cssCounterContainer}>
       <h2 className={cssCounterTitle}>{ data.counter_title ? data.counter_title : 'Counter App' }</h2>
       <div className={cssCounterValue}> {counter} </div>
@@ -54,6 +57,7 @@ const App = ({data}) => {
       </div>
       <p className={cssStaticString}>This React micro-frontend application is available for themification</p>
     </div>
+    // ToDo ------------------------------------------------
   )
 }
 
